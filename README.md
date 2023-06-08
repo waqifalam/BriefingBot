@@ -1,4 +1,6 @@
 # BriefingBot
+![briefing-bot-logo](https://github.com/waqifalam/BriefingBot/assets/41558152/e781e305-fb68-47c3-8756-6efdedef9a12)
+
 ## Overview
 BriefingBot is an intelligent tool designed to simplify your news consumption. It automatically extracts and summarizes the latest news articles from various websites, then sends a concise and engaging email with the key highlights directly to your inbox. Stay informed without spending hours browsing multiple news sources—let BriefingBot deliver the news you need in a convenient and time-saving manner.
 
