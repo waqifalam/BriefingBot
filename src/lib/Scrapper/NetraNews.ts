@@ -29,8 +29,13 @@ class NetraNewsScrapper {
    */
   static getRSSItemLinks(document: Document) {
     const items = document.documentElement.getElementsByTagName('item');
+    /**
+     * Netra News has both Bangla and English news
+     * Uses special characters in the title making it hard to detect English news
+     */
+    const regex = /^[0-9A-Za-z \\[\]\\<\\>\\!\\@\\$\\%\\*\\&\\(\\)\\?.,\\:\\;\\'\\"\\{\\}\\+\\=\\-\\_\\”\\“\\’\\-]+$/
     const links = Array.from(items)
-      .filter((item) => item.children[0].textContent?.match(/^[0-9A-Za-z \\[\]\\<\\>!]+$/))
+      .filter((item) => item.children[0].textContent?.match(regex))
       .map((item) => item.children[2].textContent)
     return links.filter(notEmpty)
   }
