@@ -1,16 +1,12 @@
 import axios from "axios";
-import notEmpty from "../../utils/notEmpty";
-import retrieveRSSDocument from "../retrieveRSSDocument";
-import parser from "../DOMParser";
-import getSummary from "../Summarizer";
-import delay from "../../utils/delay";
 
-// Scrapper Configs
-import ABCScrapperConfigs from "./ScrapperConfigs/ABC";
-import MichaelWestScrapperConfigs from "./ScrapperConfigs/MichaelWest";
-import SBSScrapperConfigs from "./ScrapperConfigs/SBS";
-import TheNewsDailyScrapperConfigs from "./ScrapperConfigs/TheNewsDaily";
-import NetraNewsScrapperConfigs from "./ScrapperConfigs/NetraNews";
+import retrieveRSSDocument from "../retrieveRSSDocument";
+import getSummary from "../Summarizer";
+import getScrapperConfigs from "./ScrapperConfigs";
+
+import notEmpty from "../../utils/notEmpty";
+import delay from "../../utils/delay";
+import parser from "../DOMParser";
 
 /**
  * Scrapper to get Summary from ABC Australia
@@ -69,29 +65,12 @@ class Scrapper {
     }));
   }
 
-  static getScrapperConfigs(scrapperId: string) {
-    switch (scrapperId) {
-      case 'ABC':
-        return ABCScrapperConfigs;
-      case 'MichaelWest':
-        return MichaelWestScrapperConfigs;
-      case 'SBS':
-        return SBSScrapperConfigs;
-      case 'TheNewsDaily':
-        return TheNewsDailyScrapperConfigs;
-      case 'NetraNews':
-        return NetraNewsScrapperConfigs;
-      default:
-        throw new Error('Invalid News Source')
-    }
-  }
-
   /**
    * Get News Brief
    * @returns List of summary for RSS feed links
    */
   static async getBrief(scrapperId: string) {
-    const scrapperConfigs = Scrapper.getScrapperConfigs(scrapperId)
+    const scrapperConfigs = getScrapperConfigs(scrapperId);
     const RSSDocument = await Scrapper.getRSSDocument(scrapperConfigs.RSS_URL);
     const rssLinks = Scrapper.getRSSItemLinks(
       RSSDocument,
