@@ -43,7 +43,11 @@ npm run start:dev
 
 ## Usage
 ### API Endpoints
-- GET /api/brief/:scrapperId: Retrieves the latest news summaries based on the scrapperId news source and sends an email summary. List of all the `scrapperIds` are present in the `/src/lib/Scrapper/ScrapperConfigs/index.ts` file.
+- GET `/api/brief/:scrapperId`: Retrieves the latest news summaries based on the scrapperId news source and sends an email summary. List of all the `scrapperIds` are present in the `/src/lib/Scrapper/ScrapperConfigs/index.ts` file.
+
+## Deployment
+To ensure that you receive your daily news briefing reliably and automatically, we recommend deploying the BriefingBot application using a cronjob or a serverless function. These options allow you to schedule the execution of the application at a specific time every day, ensuring that you receive the latest news summaries in your inbox without any manual intervention.
+
 
 ## Contributing
 Contributions to BriefingBot are more than welcome! To contribute, follow these steps:
